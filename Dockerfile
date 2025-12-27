@@ -1,9 +1,9 @@
 # Copyright (c) 2025 The Jaeger Authors.
 # SPDX-License-Identifier: Apache-2.0
 
-FROM golang:1.24.1-alpine AS build
+FROM golang:1.25.5-alpine@sha256:ac09a5f469f307e5da71e766b0bd59c9c49ea460a528cc3e6686513d64a6f1fb AS build
 ARG TARGETARCH
-ENV GOPATH /go
+ENV GOPATH=/go
 RUN apk add --update --no-cache ca-certificates make git build-base mailcap
 
 WORKDIR /go/src/debug-delve

@@ -12,7 +12,9 @@ COPY go.mod tools.go /go/src/debug-delve/
 # TODO: Remove s390x once go-delve adds support for it (https://github.com/go-delve/delve/issues/2883)
 # TODO: Remove ppc64le once support is released (https://github.com/go-delve/delve/issues/1564)
 RUN if [[ "$TARGETARCH" == "s390x" ||  "$TARGETARCH" == "ppc64le" ]] ; then \
-        touch /go/bin/dlv; \
+        echo '#!/bin/bash' > /go/bin/dlv; \
+        echo 'echo Delve not supported on the current architecture' >> /go/bin/dlv; \
+        chmod a+x /go/bin/dlv; \
     else \
         go mod download && go build -o /go/bin/dlv github.com/go-delve/delve/cmd/dlv; \
     fi

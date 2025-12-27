@@ -20,3 +20,15 @@ FROM ghcr.io/jaegertracing/base-image-with-debugger:latest
 ## Maintenance
 
 The versions of the base image and Delve are managed by Renovate.
+
+## Local Development
+
+You can build the image locally using the provided `Makefile`:
+
+```bash
+# Build for current architecture
+make build
+
+# Build for all supported architectures (requires Docker Buildx)
+make build-all
+```
